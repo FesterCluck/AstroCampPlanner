@@ -1,0 +1,11 @@
+bin/
+obj/
+*.o
+
+TestServers/AstroTransitServer/astro_server
+TestServers/WeatherSoapServer/server/weather_server
+TestServers/ParksRpcServer/rpc_server
+TestServers/DialupServer/server
+TestServers/DialupServer/server.log
+TestServers/DialupServer/campplanner_modem_port
+Clients/DialupClient/client
