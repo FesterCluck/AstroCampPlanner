@@ -1,22 +1,8 @@
 # AstroCampPlanner
 
-A .NET 6 CLI demo that picks a national park and a constellation, finds the
-next date/time that constellation is highest over the park, checks the
-weather bureau, and charges $5 for the service. It's a deliberately
-old-fashioned integration: four backend "services", each speaking a
-different communications technology from a different era, glued together
-with no shared abstraction:
-
-| Silo                     | Technology         | Era        |
-|--------------------------|---------------------|------------|
-| `ParksRpcSilo.cs`        | ONC RPC (TCP)       | ~1980s-90s |
-| `WeatherSoapSilo.cs`     | SOAP / WCF          | ~2000s     |
-| `AstroRestSilo.cs`       | REST / JSON         | ~2015+     |
-| `DialupPaymentSilo.cs`   | Dial-up modem (shelled out to a C binary) | ~1990s |
-
-The app is self-contained: the client libraries it links against live under
-`Clients/`, and the backend servers it talks to live under `TestServers/`.
-Nothing outside this directory is required to run it.
+A .NET 6 CLI demo where the user picks a national park and a constellation, 
+the system finds the next date/time that constellation is highest over the park,
+checks the weather bureau, and charges $5 for the service.
 
 ## Running it
 
@@ -39,25 +25,12 @@ dotnet bin/Debug/net6.0/AstroCampPlanner.dll
 `TestServers/ParksRpcServer`) before building; see **Rebuilding the
 backends** below if it's missing.
 
-On first run, each silo notices its backend isn't up yet and starts it
-automatically (the RPC, SOAP, and REST servers as background TCP listeners;
-the dial-up modem bank as a pty-backed process). Those processes are left
-running afterward, so subsequent runs reuse them and start instantly. Kill
-them yourself (`pkill -f TestServers`) if you want a clean slate, or just
-reboot.
-
 Demo payment cards (see `Clients/DialupClient` / `TestServers/DialupServer`):
 approve with `4242 4242 4242 4242`, decline with `4000000000000002`, both
 with expiry `01/99` and CVV `123`. Anything else is rejected locally before
 the modem ever dials out.
 
 ## Environment variables
-
-Each silo locates its backend by joining a "home" directory with a known
-relative path (e.g. `<home>/astro_server`). By default that home directory
-is computed from this project's own location — no path is hardcoded — but
-every one of them can be overridden if you've moved a server, want to point
-at a different build, or are running the backend on another machine.
 
 | Variable                                | Default                                    | Points at |
 |------------------------------------------|--------------------------------------------|-----------|
