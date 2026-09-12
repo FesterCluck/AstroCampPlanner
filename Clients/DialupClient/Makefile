@@ -1,7 +1,6 @@
 CC ?= cc
 CFLAGS ?= -std=c11 -D_POSIX_C_SOURCE=200809L -D_DEFAULT_SOURCE -Wall -Wextra -O2
-SHARED_DIR = ../../TestServers/DialupServer
-CPPFLAGS = -I$(SHARED_DIR)
+CPPFLAGS =
 
 all: client
 
