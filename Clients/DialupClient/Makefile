@@ -1,6 +1,7 @@
 CC ?= cc
 CFLAGS ?= -std=c11 -D_POSIX_C_SOURCE=200809L -D_DEFAULT_SOURCE -Wall -Wextra -O2
-CPPFLAGS =
+SHARED_DIR ?= .
+CPPFLAGS ?= $(SHARED_DIR)
 
 all: client
 
